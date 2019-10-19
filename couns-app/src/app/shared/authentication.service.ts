@@ -14,12 +14,29 @@ import { AppRoutingModule } from '../app-routing.module';
 })
 
 export class AuthenticationService {
-  private userData: Observable<firebase.User>;
+  private user: Observable<firebase.User>;
   private userDetails: firebase.User = null;
 
   constructor(public angularFireAuth: AngularFireAuth,private router: Router) {
-    this.userData = angularFireAuth.authState;
+    this.user = angularFireAuth.authState;
+
+    this.user.subscribe(
+      (user) => {
+        if (user) {
+          this.userDetails = user;
+          console.log(this.userDetails);
+        }
+        else {
+          this.userDetails = null;
+        }
+      }
+    );
     
+}
+
+signInRegular(email, password) {
+  const credential = firebase.auth.EmailAuthProvider.credential( email, password );
+return this.angularFireAuth.auth.signInWithEmailAndPassword(email, password)
 }
 
   signInWithGoogle() {

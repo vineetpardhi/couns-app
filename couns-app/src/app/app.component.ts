@@ -1,5 +1,9 @@
 import { Component } from '@angular/core';
 
+
+
+
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -7,8 +11,8 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'couns-app';
-  login_page()
-  {
-    
-  }
+  
+
+ 
+  
 }

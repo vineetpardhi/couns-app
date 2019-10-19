@@ -4,8 +4,12 @@ import { LoginComponent } from './login/login.component';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { SignupComponent } from './signup/signup.component';
+import * as name from './services/auth-guard.service';
+
 
 import { AuthenticationService } from './shared/authentication.service';
+import { DashboardComponent } from './dashboard/dashboard.component';
+
 
 
 const routes: Routes = [
@@ -13,7 +17,8 @@ const routes: Routes = [
 
 {path:'login',component:LoginComponent},
 {path:'home',component:HomeComponent},
-{path:'signup',component:SignupComponent}
+{path:'signup',component:SignupComponent},
+{path:'dashboard',component:DashboardComponent}
 ];
 
 @NgModule({

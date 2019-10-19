@@ -8,7 +8,7 @@ import { AngularFontAwesomeModule } from 'angular-font-awesome';
 
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
-import { AngularFireAuthModule } from 'angularfire2/auth'
+import { AngularFireAuthModule } from 'angularfire2/auth';
 
 
 
@@ -19,6 +19,12 @@ import { AuthenticationService } from './shared/authentication.service';
 import { RouterModule } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { SignupComponent } from './signup/signup.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+
+
+
+import { FormsModule } from '@angular/forms';
+import { MenuComponent } from './menu/menu.component';
 
 
 
@@ -27,13 +33,16 @@ import { SignupComponent } from './signup/signup.component';
     AppComponent,
     LoginComponent,
     HomeComponent,
-    SignupComponent
+    SignupComponent,
+    DashboardComponent,
+    MenuComponent
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     AppRoutingModule,
     AngularFontAwesomeModule,
-    AngularFireModule.initializeApp(environment.firebaseConfig, 'angular-auth-firebase'),
+    AngularFireModule.initializeApp(environment.firebaseConfig, 'couns-app'),
     AngularFireDatabaseModule,
     AngularFireAuthModule,
     RouterModule
