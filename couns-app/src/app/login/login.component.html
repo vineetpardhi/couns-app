@@ -1,0 +1,28 @@
+<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+</head>
+<div class="container">
+	<div class="jumbotron text-center">
+
+		<h2>Welcome to <a router-Link="home"><i class="fa fa-university"></i><span>Varsity</span></a></h2>
+		<div class="container login_cont" >
+			<form class="Login-form">
+				<label for="email-in"><i class="fa fa-user" aria-hidden="true"></i> Email</label><input type="text" class="form-control email-in"/><br>
+
+				<label for="pass-in"><i class="fa fa-key" aria-hidden="true"></i> password</label><input type="text" class="form-control pass-in"/><br>
+				
+				<button class="btn btn-success">Login</button>
+			</form>
+			<br>
+		<button type="button" class="btn btn-block google btn" (click)="signInWithGoogle()"><i class="fa fa-google fa-fw">
+			</i> Login with Google+
+		  </button>
+		
+		</div>
+	</div>
+
+</div>

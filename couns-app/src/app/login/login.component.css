@@ -1,0 +1,25 @@
+.jumbotron
+{
+    background-color: rgb(255, 255, 255);
+    height:400px;
+    
+}
+.login_cont
+{
+    margin: auto;
+  width: 50%;
+  height: 300px;
+  border: 3px solid rgb(158, 229, 130);
+  padding: 20px;
+}
+h2 a
+{
+    text-emphasis: none;
+    text-decoration: none;
+    
+}
+.google {
+    background-color: #dd4b39;
+    color: white;
+  }
+  
