@@ -39,6 +39,25 @@ signInRegular(email, password) {
 return this.angularFireAuth.auth.signInWithEmailAndPassword(email, password)
 }
 
+signup(semail,spassword,re_password){
+  if(re_password==spassword)
+  {
+    this.angularFireAuth.auth.createUserWithEmailAndPassword(semail,spassword).then(
+      value=>{
+        console.log('success!',value);
+        this.router.navigate(['dashboard']);
+      }
+    ).catch(err=> {
+      console.log('something went wrong',err.message);
+      this.router.navigate(['signup']);
+    })
+  }
+  else
+  {
+    console.log('password does not match');
+  }
+}
+
   signInWithGoogle() {
     return this.angularFireAuth.auth.signInWithPopup(
       new firebase.auth.GoogleAuthProvider()
@@ -58,6 +77,13 @@ return this.angularFireAuth.auth.signInWithEmailAndPassword(email, password)
       .then((res) => this.router.navigate(['/']));
     }
 
+
+    resetPassword(email: string) {
+      var auth = firebase.auth();
+      return auth.sendPasswordResetEmail(email)
+        .then(() => console.log("email sent"))
+        .catch((error) => console.log(error))
+    }
 
 
   }

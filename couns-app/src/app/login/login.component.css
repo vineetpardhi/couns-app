@@ -21,11 +21,24 @@ h2 a
 .google {
     background-color: #dd4b39;
     color: white;
+   
+    clear:both;
+    position: relative;
+
   }
 
   .google a {
    text-emphasis: none;
    text-decoration: none;
    
+  }
+
+  .fgtpass
+  {
+    position: relative;
+    clear: both;
+    text-emphasis: none;
+    text-decoration: none;
+    cursor: pointer;
   }
   

@@ -1,11 +1,18 @@
-<p>dashboard works!</p>
-<div id="navbar" class="navbar-collapse collapse">
-        <ul class="nav navbar-nav">
-          <li class="active"><a>Home</a></li>
-          <li><a>About</a></li>
-          <li><a>Contact</a></li>
-        </ul>
-        <ul class="nav navbar-nav navbar-right">
-          <li><a href="" (click)="authService.logout()">Logout</a></li>
-        </ul>
+
+
+
+
+
+<div id="mySidenav" class="sidenav">
+  <a class="closebtn" cursor="pointer" (click)="closeNav()">&times;</a>
+  <a href="#">About</a>
+  <a href="#">Services</a>
+  <a href="#">Clients</a>
+  <a href="#">Contact</a>
+  <a href="" (click)="authService.logout()">Logout</a>
 </div>
+
+          
+
+<span style="font-size:30px;cursor:pointer" (click)="openNav()">&#9776; open</span>
+  

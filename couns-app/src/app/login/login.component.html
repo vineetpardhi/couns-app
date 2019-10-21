@@ -27,13 +27,17 @@
 				<button type="button" class="btn btn-primary" style="margin-bottom: 20px"
 				 (click)="signInWithEmail()" [disabled]="formCtrl.form.invalid">Login</button>
 
+				 <br>
+				 <a (click)="resetPassword('hello@angularfirebase.com')" class="fgtpass" >Forgot Password</a>
+
 
 			</form>
-			<br>
+		
 		<button type="button" class="btn btn-block google btn" (click)="signInWithGoogle()"><i class="fa fa-google fa-fw">
 			</i> Login with Google+
 		  </button>
-		
+		  
+		 
 		</div>
 	</div>
 

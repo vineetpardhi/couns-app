@@ -38,6 +38,10 @@ export class LoginComponent implements OnInit {
   }
 
 
+  resetPassword(email: string) {
+    this.authService.resetPassword(email)
+  }
+
   ngOnInit() {
   }
 
