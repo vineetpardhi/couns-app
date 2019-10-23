@@ -1,11 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from '../shared/authentication.service';
 
+import {Input, ViewChild} from '@angular/core';
+import { ModalDirective } from 'ngx-bootstrap';
+
+
+
+
 // for database
 
 
 @Component({
   selector: 'app-signup',
+
   templateUrl: './signup.component.html',
   styleUrls: ['./signup.component.css']
 })
@@ -17,13 +24,20 @@ export class SignupComponent implements OnInit {
  constructor(public auth:AuthenticationService) {}
   
 
+
  
 
+
   ngOnInit() {
+
   }
 
   signup() {
     this.auth.signup(this.semail,this.spassword,this.re_password);
+
+
+    
   }
 
 }
+
