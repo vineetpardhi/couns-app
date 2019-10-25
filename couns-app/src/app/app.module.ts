@@ -17,6 +17,7 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 import { environment } from '../environments/environment';
 import { LoginComponent } from './login/login.component';
 import { AuthenticationService } from './shared/authentication.service';
+import {AuthGuardService} from './services/auth-guard.service';
 import { RouterModule } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { SignupComponent } from './signup/signup.component';
@@ -26,6 +27,10 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 
 import { FormsModule } from '@angular/forms';
 import { MenuComponent } from './menu/menu.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatTabsModule} from '@angular/material';
+import {MatIconModule} from '@angular/material';
+import { HeaderComponent } from './header/header.component';
 
 
 
@@ -36,7 +41,8 @@ import { MenuComponent } from './menu/menu.component';
     HomeComponent,
     SignupComponent,
     DashboardComponent,
-    MenuComponent
+    MenuComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
@@ -46,9 +52,12 @@ import { MenuComponent } from './menu/menu.component';
     AngularFireModule.initializeApp(environment.firebaseConfig, 'couns-app'),
     AngularFireDatabaseModule,
     AngularFireAuthModule,
-    RouterModule
+    RouterModule,
+    BrowserAnimationsModule,
+    MatTabsModule,
+    MatIconModule
   ],
-  providers: [AuthenticationService],
+  providers: [AuthenticationService,AuthGuardService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
