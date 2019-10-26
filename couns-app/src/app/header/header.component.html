@@ -45,7 +45,7 @@
   <!-- END SCROLL TOP BUTTON -->
 
   <!-- Start header  -->
-  <header id="mu-header">
+  <header *ngIf="nav.visible" id="mu-header">
     <div  class="container">
       <div class="row">
         <div class="col-lg-12 col-md-12">
@@ -84,7 +84,7 @@
   </header>
   <!-- End header  -->
   <!-- Start menu -->
-  <section  id="mu-menu">
+  <section  *ngIf="nav.visible" id="mu-menu">
     <nav class="navbar navbar-default" role="navigation">  
       <div class="container">
         <div class="navbar-header">

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from '../shared/authentication.service';
 import { Observable } from 'rxjs';
+import { Template } from '@angular/compiler/src/render3/r3_ast';
+import { NavbarService } from '..//navbar.service';
 
 @Component({
   selector: 'app-header',
@@ -8,8 +10,8 @@ import { Observable } from 'rxjs';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
- 
-  constructor() { 
+ ShowNav:boolean=true;
+  constructor(public nav: NavbarService ) { 
 
     
   }

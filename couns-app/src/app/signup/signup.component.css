@@ -58,3 +58,15 @@
     text-decoration: none;
     
 }
+
+mat-radio-button
+{
+  color:white;
+  min-width: 25px !important;
+  padding: 5px 10px;
+  margin:10px;
+     background-color:rgb(75, 87, 201);
+      color:white;
+      font-weight: 70;
+      display: inline-block;
+}

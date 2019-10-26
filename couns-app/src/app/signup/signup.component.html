@@ -14,61 +14,44 @@
     <hr>
              
 </div>
-   
-  <mat-tab-group mat-align-tabs="center">
-          
-    <div class="container">
-     <mat-tab >   <!--counsellor--> 
-        <ng-template mat-tab-label>
-            <mat-icon>person</mat-icon> Sign up as counseller
-          </ng-template>   
-          <form >
-              <div class="container text-center">
-                      
-                    <label for="email"><i class="fa fa-envelope"></i><b>Email</b></label>
-                    <input type="text" class="form-control" [(ngModel)]="semail" placeholder="Enter Email" name="email" required>
-                
-                    <label for="psw"><i class="fa fa-key"></i><b>Password</b></label>
-                    <input type="password" class="form-control" [(ngModel)]="spassword" placeholder="Enter Password" name="psw" required>
-                
-                    <label for="psw-repeat"><i class="fa fa-key"></i><b>Confirm Password</b></label>
-                    <input type="password" class="form-control"  [(ngModel)]="re_password" placeholder="Repeat Password" name="psw-repeat" required>
-                    <hr>
-                    <p>By creating an account you agree to our <a href="#">Terms & Privacy</a>.</p>
-                  
-                    
-                  
-                  
-                    <button type="submit" class="registerbtn" (click)="signup()">Register</button>
-              </div>
-                  
-                  <div class="container signin">
-                    <p>Already have an account? <a href ="login" routerLink="login">Login</a>.</p>
-                  </div>
+  
+           
+         
 
-          </form>
-      </mat-tab>
+    
 
-
-        <mat-tab >  <!--counsellee-->
-            <ng-template mat-tab-label>
-                <i class="fa fa-graduation-cap"></i> Sign up as counsellee
-            </ng-template>   
-            
-            <form>
-              <div class="container">
-                content2
-              </div>
-            </form>
-
-
-
-
-
-
-        </mat-tab>
+    <div class="container" align="center">
+    <mat-radio-group aria-label="Select an option">
+      <mat-radio-button value="1"><i class="fa fa-user-circle"></i>Sign up as counseller</mat-radio-button>
+      <mat-radio-button value="2"><i class="fa fa-graduation-cap"></i> Sign up as counsellee</mat-radio-button>
+    </mat-radio-group>
     </div>
-    </mat-tab-group>
+
+    <form >
+      <div class="container text-center">
+              
+            <label for="email"><i class="fa fa-envelope"></i><b>Email</b></label>
+            <input type="text" class="form-control" [(ngModel)]="semail" placeholder="Enter Email" name="email" required>
+        
+            <label for="psw"><i class="fa fa-key"></i><b>Password</b></label>
+            <input type="password" class="form-control" [(ngModel)]="spassword" placeholder="Enter Password" name="psw" required>
+        
+            <label for="psw-repeat"><i class="fa fa-key"></i><b>Confirm Password</b></label>
+            <input type="password" class="form-control"  [(ngModel)]="re_password" placeholder="Repeat Password" name="psw-repeat" required>
+            <hr>
+            <p>By creating an account you agree to our <a href="#">Terms & Privacy</a>.</p>
+          
+            
+          
+          
+            <button type="submit" class="registerbtn" (click)="signup()">Register</button>
+      </div>
+          
+          <div class="container signin">
+            <p>Already have an account? <a href ="login" routerLink="login">Login</a>.</p>
+          </div>
+
+  </form>
   
   
 

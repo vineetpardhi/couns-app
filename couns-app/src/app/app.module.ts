@@ -28,9 +28,13 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { FormsModule } from '@angular/forms';
 import { MenuComponent } from './menu/menu.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {MatTabsModule} from '@angular/material';
+import {MatTabsModule, MAT_RADIO_DEFAULT_OPTIONS,MatRadioModule} from '@angular/material';
 import {MatIconModule} from '@angular/material';
 import { HeaderComponent } from './header/header.component';
+
+import { NavbarService } from './navbar.service';
+
+
 
 
 
@@ -55,9 +59,10 @@ import { HeaderComponent } from './header/header.component';
     RouterModule,
     BrowserAnimationsModule,
     MatTabsModule,
-    MatIconModule
+    MatIconModule,
+    MatRadioModule
   ],
-  providers: [AuthenticationService,AuthGuardService],
+  providers: [AuthenticationService,AuthGuardService,NavbarService,{provide:MAT_RADIO_DEFAULT_OPTIONS,useValue:{color:'accent'},}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

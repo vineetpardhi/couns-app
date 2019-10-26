@@ -65,7 +65,7 @@ signup(semail,spassword,re_password){
     )  
   }
 
-  isLoggedIn() {
+  public isLoggedIn() {
     if (this.userDetails == null ) {
         return false;
       } else {
