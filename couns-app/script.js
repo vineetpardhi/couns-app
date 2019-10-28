@@ -1,6 +1,9 @@
 var express = require('express');
 var mysql = require('mysql');
 const app = express();
+
+//var rows;
+
 var connection = mysql.createPool({
 connectionLimit: 50,
 host: 'localhost',
@@ -12,7 +15,7 @@ database: 'counsel'
 app.get('/',function(req, resp){
 
     connection.getConnection(function(error, tempCont){
-            if(!!error) {
+            if(!error) {
                 tempCont.release();
                 console.log('Error');
             } else {
@@ -20,7 +23,7 @@ app.get('/',function(req, resp){
 
                 tempCont.query("SELECT * FROM counsellor", function(error, rows, fields){
                     tempCont.release();
-                    if(!!error){
+                    if(!error){
                         console.log('Error in the query');
                     } else{
                         resp.json(rows);
@@ -29,6 +32,7 @@ app.get('/',function(req, resp){
             }
 
     });
+    return resp.json(rows);
 });
 
 app.listen(1337);

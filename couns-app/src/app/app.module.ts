@@ -10,6 +10,7 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 
+import { AngularFirestoreModule } from 'angularfire2/firestore';
 
 
 
@@ -26,13 +27,14 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 
 
 import { FormsModule } from '@angular/forms';
-import { MenuComponent } from './menu/menu.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatTabsModule, MAT_RADIO_DEFAULT_OPTIONS,MatRadioModule} from '@angular/material';
 import {MatIconModule} from '@angular/material';
 import { HeaderComponent } from './header/header.component';
 
 import { NavbarService } from './navbar.service';
+import { HttpClient } from '@angular/common/http';
+import{HttpClientModule} from '@angular/common/http'; 
 
 
 
@@ -45,7 +47,6 @@ import { NavbarService } from './navbar.service';
     HomeComponent,
     SignupComponent,
     DashboardComponent,
-    MenuComponent,
     HeaderComponent
   ],
   imports: [
@@ -60,9 +61,12 @@ import { NavbarService } from './navbar.service';
     BrowserAnimationsModule,
     MatTabsModule,
     MatIconModule,
-    MatRadioModule
+    MatRadioModule,
+    HttpClientModule,
+    AngularFirestoreModule
+  
   ],
-  providers: [AuthenticationService,AuthGuardService,NavbarService,{provide:MAT_RADIO_DEFAULT_OPTIONS,useValue:{color:'accent'},}],
+  providers: [AuthenticationService,AuthGuardService,NavbarService,{provide:MAT_RADIO_DEFAULT_OPTIONS,useValue:{color:'accent'}},LoginComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

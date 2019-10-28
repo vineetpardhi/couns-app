@@ -3,12 +3,10 @@ import { Router } from "@angular/router";
 import * as firebase from 'firebase/app';
 
 
-
 import { AngularFireAuth } from "@angular/fire/auth";
 
 import { Observable } from 'rxjs';
 import { AppRoutingModule } from '../app-routing.module';
-
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +15,9 @@ import { AppRoutingModule } from '../app-routing.module';
 export class AuthenticationService {
   private user: Observable<firebase.User>;
   private userDetails: firebase.User = null;
+ 
 
+    vemail:string;
   constructor(public angularFireAuth: AngularFireAuth,private router: Router) {
     this.user = angularFireAuth.authState;
 
@@ -32,13 +32,20 @@ export class AuthenticationService {
         }
       }
     );
+
+    
     
 }
 
 signInRegular(email, password) {
   const credential = firebase.auth.EmailAuthProvider.credential( email, password );
+  this.vemail=email;
 return this.angularFireAuth.auth.signInWithEmailAndPassword(email, password)
+
+
 }
+
+
 
 signup(semail,spassword,re_password){
   if(re_password==spassword)
