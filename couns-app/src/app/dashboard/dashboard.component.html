@@ -1,8 +1,5 @@
 
 
-
-
-
 <div id="mySidenav" class="sidenav">
   <a class="closebtn" cursor="pointer" (click)="closeNav()">&times;</a>
   <a href="#">About</a>
@@ -17,12 +14,40 @@
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 <!------ Include the above in your HEAD tag ---------->
 
-<div class="container emp-profile">
-            
+<div >
 
-<span style="font-size:30px;cursor:pointer" (click)="openNav()">&#9776;</span>
+        <nav class="navbar navbar-expand-lg navbar-light bg-info">
+                <span style="font-size:30px;cursor:pointer" (click)="openNav()">&#9776;</span>
+
+                <div class="logo container"><a class="navbar-brand" ><i class="fa fa-university"></i><span>Varsity</span></a></div>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+                </button>
+          
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                  <ul class="navbar-nav ml-auto">
+                    <li class="nav-item ">
+                      <a class="nav-link">Counsellors <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link">Our Courses</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link ">Feedback</a>
+                    </li>
+                  </ul>
+                
+                </div>
+              </nav>
+</div>
+
+
+<div class="container emp-profile">
+      
+
             <form method="post">
                 <div class="row">
                     <div class="col-md-4">
@@ -55,20 +80,20 @@
                             </ul>
                         </div>
                     </div>
-                    <div class="col-md-2">
-                        <input type="submit" class="profile-edit-btn" name="btnAddMore" value="Edit Profile"/>
+                    <div class="col-md-2 center">
+                        <button  class="profile-edit-btn center-block" id="myBtn" name="btnAddMore"  data-toggle="modal"  data-target="#squarespaceModal" >Edit Profile</button>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-4">
                         <div class="profile-work">
-                            <p>My Education</p>
+                            <p>EDUCATION</p>
                             <li *ngFor="let user of userData | async">
                                 {{ user.Education }}
                              </li>
                             <p>ABOUT ME</p>
                             <li *ngFor="let user of userData | async">
-                               Field Of Interest:{{ user.fieldofinterest }}
+                             {{ user.fieldofinterest }}
                             </li>
                         </div>
                     </div>
@@ -121,3 +146,50 @@
                 </div>
             </form>           
         </div>
+
+
+
+<!--modal box-->
+
+<!-- The Modal -->
+<div id="myModal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+      <div class="container">
+          <h2>Update your profile</h2>
+      </div>
+    <span class="close" style="position: absolute;right:0px;top:0px;">&times;</span>
+    <!--Form to edit/update profile-->
+        <div class="container">
+            <form #formCtrl="ngForm">
+                <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" class="form-control" id="username" required>
+                </div>
+        
+                <div class="form-group">
+                <label for="Education">Education</label>
+                <input type="text"  class="form-control" id="Education" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="foi">Field of Interest</label>
+                    <input type="text"  class="form-control" id="foi" required>
+                </div>
+
+
+                <div class="form-group">
+                    <label for="ph">Phone/Contact</label>
+                    <input type="number"  class="form-control" id="ph" min="0"  maxlength="10" required>
+                </div>
+
+        
+                <button type="submit" class="btn btn-success">Submit</button>
+        
+            </form>
+        </div>
+
+  </div>
+
+</div>

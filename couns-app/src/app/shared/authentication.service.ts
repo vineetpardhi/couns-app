@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Router } from "@angular/router";
 import * as firebase from 'firebase/app';
-
+import { AngularFirestore, AngularFirestoreModule } from 'angularfire2/firestore';
 
 import { AngularFireAuth } from "@angular/fire/auth";
 
@@ -15,7 +15,7 @@ import { AppRoutingModule } from '../app-routing.module';
 export class AuthenticationService {
   private user: Observable<firebase.User>;
   private userDetails: firebase.User = null;
- 
+
 
     vemail:string;
   constructor(public angularFireAuth: AngularFireAuth,private router: Router) {
@@ -53,12 +53,13 @@ signup(semail,spassword,re_password){
     this.angularFireAuth.auth.createUserWithEmailAndPassword(semail,spassword).then(
       value=>{
         console.log('success!',value);
-        this.router.navigate(['dashboard']);
+        this.router.navigate(['login']);
       }
     ).catch(err=> {
       console.log('something went wrong',err.message);
       this.router.navigate(['signup']);
     })
+    
   }
   else
   {
@@ -93,6 +94,10 @@ signup(semail,spassword,re_password){
         .catch((error) => console.log(error))
     }
 
+    
+
+   
+  
 
   }
   

@@ -10,7 +10,7 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 
-import { AngularFirestoreModule } from 'angularfire2/firestore';
+import { AngularFirestoreModule,AngularFirestore } from 'angularfire2/firestore';
 
 
 
@@ -29,12 +29,20 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatTabsModule, MAT_RADIO_DEFAULT_OPTIONS,MatRadioModule} from '@angular/material';
-import {MatIconModule} from '@angular/material';
+import {MatFormFieldModule} from '@angular/material/form-field';
+
+import {MatIconModule,MatMenuDefaultOptions} from '@angular/material';
 import { HeaderComponent } from './header/header.component';
+
+import { MDBBootstrapModule } from 'angular-bootstrap-md';
 
 import { NavbarService } from './navbar.service';
 import { HttpClient } from '@angular/common/http';
-import{HttpClientModule} from '@angular/common/http'; 
+import{HttpClientModule} from '@angular/common/http';
+import { FooterComponent } from './footer/footer.component'; 
+import {MatDialogModule} from '@angular/material/dialog';
+
+
 
 
 
@@ -47,7 +55,8 @@ import{HttpClientModule} from '@angular/common/http';
     HomeComponent,
     SignupComponent,
     DashboardComponent,
-    HeaderComponent
+    HeaderComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,
@@ -63,7 +72,11 @@ import{HttpClientModule} from '@angular/common/http';
     MatIconModule,
     MatRadioModule,
     HttpClientModule,
-    AngularFirestoreModule
+    AngularFirestoreModule,
+    MDBBootstrapModule,
+    MatFormFieldModule,
+    MatDialogModule
+    
   
   ],
   providers: [AuthenticationService,AuthGuardService,NavbarService,{provide:MAT_RADIO_DEFAULT_OPTIONS,useValue:{color:'accent'}},LoginComponent],

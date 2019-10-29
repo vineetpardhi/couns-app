@@ -25,6 +25,8 @@
     "@angular/router": "^8.2.12",
     "@firebase/app": "^0.4.21",
     "@material/tab-bar": "^3.2.0",
+    "@ng-bootstrap/ng-bootstrap": "^5.1.2",
+    "angular-bootstrap-md": "^8.5.0",
     "angular-font-awesome": "^3.1.2",
     "angular2-fontawesome": "^5.2.1",
     "angularfire2": "^5.2.1",
