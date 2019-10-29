@@ -31,8 +31,8 @@ export class DashboardComponent implements OnInit{
   constructor(public nav: NavbarService ,db:AngularFirestore ,public auth:AuthenticationService) {
     
     
-  // const get_email=auth.vemail;
-    //this.userData = db.collection('/users',ref=>ref.where('email','==',get_email)).valueChanges();
+  const get_email=auth.vemail;
+  this.userData = db.collection('/users',ref=>ref.where('email','==',get_email)).valueChanges();
 
   }
 
@@ -43,7 +43,7 @@ export class DashboardComponent implements OnInit{
         var modal = document.getElementById("myModal");
 
         // Get the button that opens the modal
-        var btn = document.getElementById("myBtn");
+        var btn :HTMLElement= document.getElementById("myBtn");
 
         // Get the <span> element that closes the modal
         var span = document.getElementsByClassName("close")[0];
@@ -54,9 +54,9 @@ export class DashboardComponent implements OnInit{
         }
 
         // When the user clicks on <span> (x), close the modal
-        span.onclick = function() {
+        span.addEventListener('click',function() {
           modal.style.display = "none";
-        }
+        });
 
         // When the user clicks anywhere outside of the modal, close it
         window.onclick = function(event) {

@@ -15,6 +15,10 @@ export const environment = {
     messagingSenderId: "954723585281",
     appId: "1:954723585281:web:9e79cd42a2a8c4ad279f00",
     measurementId: "G-EGF71YSG31"
+  },
+  dialogflow:{
+   angularBot:'492d59a2ecef438ca21e46496d9da3fc '
+
   }
 };
 

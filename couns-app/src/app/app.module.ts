@@ -24,7 +24,7 @@ import { HomeComponent } from './home/home.component';
 import { SignupComponent } from './signup/signup.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 
-
+import {ChatDialogComponent} from './chat-dialog/chat-dialog.component';
 
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -57,6 +57,7 @@ import {MatDialogModule} from '@angular/material/dialog';
     DashboardComponent,
     HeaderComponent,
     FooterComponent,
+    ChatDialogComponent
   ],
   imports: [
     BrowserModule,
