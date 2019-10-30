@@ -2,10 +2,10 @@
 
 <div id="mySidenav" class="sidenav">
   <a class="closebtn" cursor="pointer" (click)="closeNav()">&times;</a>
-  <a href="#">About</a>
-  <a href="#">Services</a>
-  <a href="#">Clients</a>
-  <a href="#">Contact</a>
+  <a >About</a>
+  <a >Services</a>
+  <a >Clients</a>
+  <a >Contact</a>
   <a href="" (click)="authService.logout()">Logout</a>
 </div>
 
@@ -29,8 +29,10 @@
           
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                   <ul class="navbar-nav ml-auto">
-                    <li class="nav-item ">
-                      <a class="nav-link">Counsellors <span class="sr-only">(current)</span></a>
+                 <li *ngIf="!type_flag" class="nav-item " >
+                     
+                      <a class="nav-link" id="coun"  (click)="openCards()">Counsellors <span class="sr-only">(current)</span></a>
+                  
                     </li>
                     <li class="nav-item">
                       <a class="nav-link">Our Courses</a>
@@ -69,32 +71,36 @@
                                         {{ user.workingstate}}
                                         
                                     </h6>
-                                    <p class="proile-rating">RANKINGS : <span>8/10</span></p>
+                                    <div  *ngIf="type_flag">
+                                    <p  class="proile-rating " *ngFor="let user of userData">RANKINGS : <span>{{user.rating}}/10</span></p>
+                                    </div>
                             <ul class="nav nav-tabs" id="myTab" role="tablist">
                                 <li class="nav-item">
-                                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">About</a>
+                                    <a class="nav-link active" id="home-tab" data-toggle="tab"  role="tab" aria-controls="home" aria-selected="true">About You</a>
                                 </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Timeline</a>
-                                </li>
+                               
                             </ul>
                         </div>
                     </div>
                     <div class="col-md-2 center">
-                        <button  class="profile-edit-btn center-block" id="myBtn" name="btnAddMore"  data-toggle="modal"  data-target="#squarespaceModal" >Edit Profile</button>
+                        <button  class="profile-edit-btn center-block" id="myBtn" name="btnAddMore"  data-toggle="modal" >Edit Profile</button>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-4">
                         <div class="profile-work">
-                            <p>EDUCATION</p>
-                            <li *ngFor="let user of userData | async">
-                                {{ user.Education }}
-                             </li>
-                            <p>ABOUT ME</p>
-                            <li *ngFor="let user of userData | async">
-                             {{ user.fieldofinterest }}
-                            </li>
+                            <div class="info" *ngIf="!type_flag">
+                                <p>YOUR PREFERENCES</p>
+                                <li *ngFor="let user of userData | async">
+                                   
+                                </li>
+                            </div>
+                            <div class="info">
+                                <p>ABOUT ME</p>
+                                <li *ngFor="let user of userData | async">
+                                {{ user.fieldofinterest }}
+                                </li>
+                            </div>
                         </div>
                     </div>
                     <div class="col-md-8">
@@ -104,9 +110,18 @@
                                             <div class="col-md-6">
                                                 <label>User Name</label>
                                             </div>
+                                                <div class="col-md-6">
+                                                    <p *ngFor="let user of userData | async">
+                                                        {{ user.username }} </p>
+                                                </div> 
+                                        </div>
+
+                                        <div class="row">
                                             <div class="col-md-6">
-                                                <p *ngFor="let user of userData | async">
-                                                    {{ user.Education }} </p>
+                                                    <label>Education</label>    
+                                             </div>
+                                             <div class="col-md-6">
+                                                <p *ngFor="let user of userData | async"> {{ user.Education }} </p>
                                             </div>
                                         </div>
                                      
@@ -132,15 +147,16 @@
                                         </div>
                                        
                             </div>
-                            <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                                                                       <div class="row">
                                     <div class="col-md-12">
-                                        <label>Your Bio</label><br/>
-                                        <p>Your detail description</p>
-                                        
+                                        <div class="form-group">
+                                            <label for="exampleFormControlTextarea1">Your Bio</label>
+                                            <textarea class="form-control rounded-0" id="exampleFormControlTextarea1" rows="5"></textarea>
+                                          </div>
+                                          
                                     </div>
                                 </div>
-                            </div>
+                            
                         </div>
                     </div>
                 </div>
@@ -162,30 +178,51 @@
     <span class="close" style="position: absolute;right:0px;top:0px;">&times;</span>
     <!--Form to edit/update profile-->
         <div class="container">
-            <form #formCtrl="ngForm">
+            <form name="updateForm" method="POST" #formCtrl="ngForm">
                 <div class="form-group">
                 <label for="username">Username</label>
-                <input type="text" class="form-control" id="username" required>
+                <input type="text" class="form-control" [(ngModel)]="updet.username" name="username" required>
                 </div>
         
                 <div class="form-group">
                 <label for="Education">Education</label>
-                <input type="text"  class="form-control" id="Education" required>
+                <input type="text"  class="form-control" [(ngModel)]="updet.education" name="Education" required>
                 </div>
 
                 <div class="form-group">
                     <label for="foi">Field of Interest</label>
-                    <input type="text"  class="form-control" id="foi" required>
+                    <input type="text"  class="form-control" [(ngModel)]="updet.foi" name="foi" required>
                 </div>
+
+                <div *ngIf="!type_flag">
+                    <div class="form-group">
+                            <label for="prf1">preference1</label>
+                            <input type="text"  class="form-control"[(ngModel)]="updet.pfr1" name="pr1" required>
+                    </div>
+
+                    <div class="form-group">
+                            <label for="prf2">preference2</label>
+                            <input type="text"  class="form-control" [ngModelOptions]="{standalone: true}"  [(ngModel)]="updet.pfr2" name="prf2" required>
+                    </div>
+                </div>
+                
+
 
 
                 <div class="form-group">
                     <label for="ph">Phone/Contact</label>
-                    <input type="number"  class="form-control" id="ph" min="0"  maxlength="10" required>
+                    <input type="number"  class="form-control"  [(ngModel)]="updet.phone" name="ph" min="0"  maxlength="10" required>
                 </div>
 
+
+                
+                <div class="form-group">
+                        <label for="wk">WorkingState</label>
+                        <input type="text"  class="form-control"  [(ngModel)]="updet.wrkst" name="wk"  required>
+                    </div>
+
         
-                <button type="submit" class="btn btn-success">Submit</button>
+                <button type="submit" class="btn btn-success" >Save</button>
         
             </form>
         </div>
@@ -193,3 +230,25 @@
   </div>
 
 </div>
+
+
+<!--profile card for user-->
+<div *ngIf="!type_flag" id="profile_card" class="modal">
+    
+    <div  class="modal-content" *ngFor="let profile of profiledata | async">
+        <div class="container">
+                <span class="close2" style="position: absolute;right:0px;top:0px;">&times;</span>
+        </div>
+        <h3>Suggestions for Counsellors</h3>
+        <div class="card" style="width: 18rem;" >
+            <img class="card-img-top" src="{{profile.profile_photo}}" alt="Card image cap">
+            <div class="card-body">
+            <h5 class="card-title">{{profile.username}}</h5>
+                    <li>{{profile.Education}}</li>
+                    <li>{{profile.workingstate}}</li>
+            <p class="card-text">He has guided many people in field of {{profile.fieldofinterest}}</p>        
+         </div>
+        </div>
+    </div>
+</div>
+  

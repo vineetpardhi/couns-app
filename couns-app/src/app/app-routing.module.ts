@@ -6,6 +6,7 @@ import { HomeComponent } from './home/home.component';
 import { SignupComponent } from './signup/signup.component';
 import {ChatDialogComponent} from './chat-dialog/chat-dialog.component';
 import * as name from './services/auth-guard.service';
+import {FooterComponent} from './footer/footer.component'
 
 
 import { AuthenticationService } from './shared/authentication.service';

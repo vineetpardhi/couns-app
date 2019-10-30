@@ -16,15 +16,15 @@ export class ChatDialogComponent implements OnInit {
   constructor(public chat:ChatService) { }
 
   ngOnInit() {
-    this.chat.talk();
+    //this.chat.talk();
     //appends to array after each new message is added
     this.message=this.chat.conversation.asObservable()
-      .scan((acc,val)=>acc.concat(val));
+      .scan((acc,val)=>{ return acc.concat(val)});
   }
 
   sendMessage(){
     this.chat.converse(this.formvalue);
-    this.formvalue= '';
+   
   }
 
 
