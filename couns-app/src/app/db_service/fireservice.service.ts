@@ -68,41 +68,21 @@ export class FireserviceService {
    }
 
 
-   
+   timeslot(appt_date: any,ce_email:any,cr_email: any)
+   {
+      this.afs.collection('/timeslot').add({
+        date_time:appt_date,
+        
+        ce_email:ce_email,
+        CR_email:cr_email
+      }).then(res=>{
+        console.log('you have have requested for appointment');
+      },err=>{console.log(err)});
 
-  /*userUpdate()
-  {
-   const vemail=this.vb.auth.vemail;
-      if(this.vb.type_flag==true)
-      {
-        this.afs.collection('users',ref=>ref.where('email','==',vemail)).doc().set({ 
-          Education:this.vb.updet.education,
-          fieldofinterest:this.vb.updet.foi,
-          phone:this.vb.updet.phone,
-          username:this.vb.updet.username,
-          workingstate:this.vb.updet.wrkst, 
-          
-        }).then(res=>{
-          console.log('successfully updated');
-        },err=>{console.log(err)});
-      }
-      else
-      {
-        this.afs.collection('users',ref=>ref.where('email','==',vemail)).doc().set({ 
-          
-          Education:this.vb.updet.education,
-          fieldofinterest:this.vb.updet.foi,
-          phone:this.vb.updet.phone,
-          username:this.vb.updet.username,
-          workingstate:this.vb.updet.wrkst,
-          preference1:this.vb.updet.pfr1,
-          preference2:this.vb.updet.pfr2
-        }).then(res=>{
-          console.log('successfully updated');
-        },err=>{console.log(err)});
-      }
 
-  }*/
+
+   }
+
 
 
 

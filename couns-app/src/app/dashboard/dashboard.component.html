@@ -92,8 +92,11 @@
                             <div class="info" *ngIf="!type_flag">
                                 <p>YOUR PREFERENCES</p>
                                 <li *ngFor="let user of userData | async">
-                                   
+                                   {{user.preference1}}
                                 </li>
+                                <li *ngFor="let user of userData | async">
+                                    {{user.preference2}}
+                                 </li>
                             </div>
                             <div class="info">
                                 <p>ABOUT ME</p>
@@ -222,7 +225,7 @@
                     </div>
 
         
-                <button type="submit" class="btn btn-success" >Save</button>
+                <button type="submit" class="btn btn-success" (click)="usup()">Save</button>
         
             </form>
         </div>
@@ -240,15 +243,35 @@
                 <span class="close2" style="position: absolute;right:0px;top:0px;">&times;</span>
         </div>
         <h3>Suggestions for Counsellors</h3>
-        <div class="card" style="width: 18rem;" >
+        <div class="card" style="width: 18rem;" id="card" >
             <img class="card-img-top" src="{{profile.profile_photo}}" alt="Card image cap">
             <div class="card-body">
             <h5 class="card-title">{{profile.username}}</h5>
                     <li>{{profile.Education}}</li>
                     <li>{{profile.workingstate}}</li>
-            <p class="card-text">He has guided many people in field of {{profile.fieldofinterest}}</p>        
-         </div>
-        </div>
+            <p class="card-text">He has guided many people in field of {{profile.fieldofinterest}}</p>    
+            
+            <!--taking user input for appointment-->  
+                <div class="container">
+                <label>
+                        Date
+                        <input  [min]="min" [max]="max" [owlDateTimeTrigger]="dt3" [owlDateTime]="dt3" [(ngModel)]="mydate">
+                        <owl-date-time [pickerType]="'calendar'" #dt3></owl-date-time>
+                    </label>
+                    
+                    <label>
+                        Time
+                        <input [owlDateTimeTrigger]="dt4" [owlDateTime]="dt4" [(ngModel)]="mydate">
+                        <owl-date-time [pickerType]="'timer'" #dt4></owl-date-time>
+                    </label>
+
+                    </div>
+
+                <br>
+                <button class="btn btn-primary" (click)="reqappt()">Request an appointment</button>
+         </div>    
     </div>
 </div>
+
+
   

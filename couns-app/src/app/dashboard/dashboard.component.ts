@@ -5,10 +5,13 @@ import { Observable, observable } from 'rxjs';
 import {AuthenticationService} from '../shared/authentication.service';
 import {LoginComponent} from '../login/login.component';
 
+
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 
+import {FireserviceService} from '../db_service/fireservice.service';
+import { Time } from '@angular/common';
 
-
+ 
 
 
 @Component({
@@ -17,8 +20,14 @@ import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit{
+ 
+  public min = new Date(new Date());
+  public max = new Date(2020, 0, 1);
 
-  
+
+  mydate:any;
+  mytime:any;
+
   updet={
     username:'',
     phone:'',
@@ -47,7 +56,8 @@ export class DashboardComponent implements OnInit{
 
 
 
-  constructor(public nav: NavbarService  ,public auth:AuthenticationService, public db:AngularFirestore) {
+  constructor(public nav: NavbarService  ,public auth:AuthenticationService, public db:AngularFirestore,
+    public fss:FireserviceService) {
     
 
   const get_email=auth.vemail;
@@ -83,10 +93,54 @@ export class DashboardComponent implements OnInit{
 
 
 
+  }
 
 
+  read_request()
+  {
 
   }
+
+  reqappt(cr_email:any)
+  {
+    
+   
+   // this.fss.timeslot(this.mydate,this.auth.vemail,cr_email);
+  }
+
+  usup()
+  {
+   /*const vemail=this.auth.vemail;
+      if(this.type_flag==true)
+      {
+        this.db.collection('users',ref=>ref.where('email','==',vemail)).doc().set({ 
+          Education:this.updet.education,
+          fieldofinterest:this.updet.foi,
+          phone:this.updet.phone,
+          username:this.updet.username,
+          workingstate:this.updet.wrkst, 
+          
+        }).then(res=>{
+          console.log('successfully updated');
+        },err=>{console.log(err)});
+      }
+      else
+      {
+        this.db.collection('users',ref=>ref.where('email','==',vemail)).doc().set({ 
+          
+          Education:this.updet.education,
+          fieldofinterest:this.updet.foi,
+          phone:this.updet.phone,
+          username:this.updet.username,
+          workingstate:this.updet.wrkst,
+          preference1:this.updet.pfr1,
+          preference2:this.updet.pfr2
+        }).then(res=>{
+          console.log('successfully updated');
+        },err=>{console.log(err)});
+      }*/
+  }
+
 
 
   getFi(f:string)
@@ -175,6 +229,10 @@ export class DashboardComponent implements OnInit{
             modal.style.display = "none";
           }
         }
+
+
+
+
   }
 
   openNav() {
@@ -185,6 +243,8 @@ export class DashboardComponent implements OnInit{
     document.getElementById("mySidenav").style.width = "0";
   }
 
+
+  
   ngOnInit() {
     this.nav.hide();
     this.openModal();
