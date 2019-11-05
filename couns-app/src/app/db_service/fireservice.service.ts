@@ -36,7 +36,8 @@ export class FireserviceService {
         username:'',
         usertype:stype,
         workingstate:'',
-        rating:''
+        rating:'',
+        bio:''
         
       }).then(res=>{
         alert('you have registered successfully');
@@ -56,6 +57,8 @@ export class FireserviceService {
         username:'',
         workingstate:'',
         usertype:stype,
+        bio:''
+
         
 
       }).then(res=>{
@@ -72,15 +75,37 @@ export class FireserviceService {
    {
       this.afs.collection('/timeslot').add({
         date_time:appt_date,
-        
         ce_email:ce_email,
-        CR_email:cr_email
+        CR_email:cr_email,
+        req_accp:false
       }).then(res=>{
-        console.log('you have have requested for appointment');
+        alert('you have requested for an appointment');
       },err=>{console.log(err)});
 
 
 
+   }
+
+   make_appt(is_accp:boolean,mydate: any,cemail: any,rademail: any)
+   {
+      let get_app: any;
+      if(is_accp)
+      {
+        this.afs.collection('/appointment').add({
+            date:mydate,
+            ce_mail:cemail,
+            cr_mail:rademail
+        }).then(res=>{
+          console.log('you have a fixed an appointment');
+        },err=>console.log(err));    
+        get_app=true;
+      }
+      else
+      {
+        get_app=false;
+      }
+
+      return get_app;
    }
 
 

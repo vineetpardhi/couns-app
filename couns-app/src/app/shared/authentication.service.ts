@@ -25,7 +25,7 @@ export class AuthenticationService {
       (user) => {
         if (user) {
           this.userDetails = user;
-          console.log(this.userDetails);
+        
         }
         else {
           this.userDetails = null;

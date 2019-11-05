@@ -37,6 +37,12 @@
                     <li class="nav-item">
                       <a class="nav-link">Our Courses</a>
                     </li>
+
+                    <li class="nav-item">
+                         <!-- dropdown.component.html -->
+                                <a class="nav-link"   (click)="openDialog()" ><i class="fa fa-bell" style="color: white;" id="notf"></i>Notifications</a>    
+                    </li>
+
                     <li class="nav-item">
                       <a class="nav-link ">Feedback</a>
                     </li>
@@ -58,7 +64,8 @@
                             <img  *ngFor="let user of userData | async" src={{user.profile_photo}} alt="profile photo"/>
                             <div class="file btn btn-lg btn-primary">
                                 Change Photo
-                                <input type="file" name="file"/>
+                                <label for="file">Profile photo</label>
+                                <input type="file" (change)="upload($event)" accept=".png,.jpg" />
                             </div>
                         </div>
                     </div>
@@ -72,7 +79,7 @@
                                         
                                     </h6>
                                     <div  *ngIf="type_flag">
-                                    <p  class="proile-rating " *ngFor="let user of userData">RANKINGS : <span>{{user.rating}}/10</span></p>
+                                    <p  class="proile-rating " *ngFor="let user of userData | async">RANKINGS : <span>{{user.rating}}/10</span></p>
                                     </div>
                             <ul class="nav nav-tabs" id="myTab" role="tablist">
                                 <li class="nav-item">
@@ -154,7 +161,8 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label for="exampleFormControlTextarea1">Your Bio</label>
-                                            <textarea class="form-control rounded-0" id="exampleFormControlTextarea1" rows="5"></textarea>
+                                            <textarea class="form-control rounded-0" id="exampleFormControlTextarea1" rows="5" ></textarea>
+
                                           </div>
                                           
                                     </div>
@@ -222,7 +230,14 @@
                 <div class="form-group">
                         <label for="wk">WorkingState</label>
                         <input type="text"  class="form-control"  [(ngModel)]="updet.wrkst" name="wk"  required>
-                    </div>
+                    </div> 
+                    
+                <div class="form-group">
+                        <label for="yb">WorkingState</label>
+                        <input type="text"  class="form-control"  [(ngModel)]="tbio" name="yb"required>
+                </div>
+
+                
 
         
                 <button type="submit" class="btn btn-success" (click)="usup()">Save</button>
@@ -238,40 +253,89 @@
 <!--profile card for user-->
 <div *ngIf="!type_flag" id="profile_card" class="modal">
     
-    <div  class="modal-content" *ngFor="let profile of profiledata | async">
+    <div  class="modal-content">
         <div class="container">
                 <span class="close2" style="position: absolute;right:0px;top:0px;">&times;</span>
         </div>
         <h3>Suggestions for Counsellors</h3>
-        <div class="card" style="width: 18rem;" id="card" >
-            <img class="card-img-top" src="{{profile.profile_photo}}" alt="Card image cap">
-            <div class="card-body">
-            <h5 class="card-title">{{profile.username}}</h5>
-                    <li>{{profile.Education}}</li>
-                    <li>{{profile.workingstate}}</li>
-            <p class="card-text">He has guided many people in field of {{profile.fieldofinterest}}</p>    
-            
-            <!--taking user input for appointment-->  
-                <div class="container">
-                <label>
-                        Date
-                        <input  [min]="min" [max]="max" [owlDateTimeTrigger]="dt3" [owlDateTime]="dt3" [(ngModel)]="mydate">
-                        <owl-date-time [pickerType]="'calendar'" #dt3></owl-date-time>
-                    </label>
+        <div class="row">
+            <div class="card col-md-6 col-sm-4 hidden-xs"  *ngFor="let profile of profiledata | async" style="width: 18rem; " id="card" >
+                <img class="card-img-top" src="{{profile.profile_photo}}" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">{{profile.username}}</h5>
+                            <li>{{profile.Education}}</li>
+                            <li>{{profile.workingstate}}</li>
+                    <p class="card-text">He has guided many people in field of {{profile.fieldofinterest}}</p>    
                     
-                    <label>
-                        Time
-                        <input [owlDateTimeTrigger]="dt4" [owlDateTime]="dt4" [(ngModel)]="mydate">
-                        <owl-date-time [pickerType]="'timer'" #dt4></owl-date-time>
-                    </label>
+                    <!--taking user input for appointment-->  
+                        <div class="container">
 
-                    </div>
+                        <mat-radio-group aria-label="Select"  name="user_type" (change)="onChange($event)" ngModel required #user_type="ngModel">     
+                            <mat-radio-button  value="{{profile.email}}">Select this counsellor</mat-radio-button>
+                        </mat-radio-group>       
 
+
+                        </div>
+                </div>
                 <br>
-                <button class="btn btn-primary" (click)="reqappt()">Request an appointment</button>
-         </div>    
+            </div> 
+                <div class="container" style="text-align: center; padding-block: 10px; margin:5px 5px 5px 5px;" align="center">
+                        <label>
+                                Date
+                                <input  [min]="min" [max]="max" [owlDateTimeTrigger]="dt3" [owlDateTime]="dt3" [(ngModel)]="mydate">
+                                <owl-date-time [pickerType]="'calendar'" #dt3></owl-date-time>
+                         </label>
+                         <br>   
+                        <label>
+                                Time
+                                <input [owlDateTimeTrigger]="dt4" [owlDateTime]="dt4" [(ngModel)]="mydate">
+                                <owl-date-time [pickerType]="'timer'" #dt4></owl-date-time>
+                        </label>
+                </div>
+
+        </div>
+         <button class="btn btn-primary" style="width: 50%;margin-top: 10px; text-align: center; align-self: center;" (click)="reqappt()">Request an appointment</button>
     </div>
 </div>
 
 
+
+
+  
+
+                                        <!--checking notifications for counsellor-->
+                                        <div class="modal">
+                                            
+                                            <div *ngIf="show_flag && type_flag" id="notf_card" class="modal-content">  
+                                                    <span class="close2" style="position: absolute;right:0px;top:0px;">&times;</span>
+                                                <h6>You have a request from</h6>
+                                                <div class="container">
+                                                    <p *ngFor="let req of app_det | async"style="text-align: center; color: teal;">{{req.ce_email}}</p>
+                                                    <br>
+                                                    <p *ngFor="let req of app_det | async">on {{req.date}}</p>
+                                                    <mat-radio-group aria-label="Do You Want to accept request?" (change)="read_request($event)" name="flag_type"   ngModel required #user_type="ngModel">     
+                                                        <mat-radio-button  value="true">Yes</mat-radio-button><br>
+                                                        <mat-radio-button  value="false">No</mat-radio-button>                                        
+                                                    </mat-radio-group>  
+                                                </div>
+                                            </div> 
+
+                                            <p *ngIf="!show_flag && type_flag">No Notifications for Request</p> 
+                                            
+                                            <!--checking notifications for counsellee-->
+
+
+                                            <div *ngIf="!type_flag" class="container">
+                                                <p *ngIf="get_accp">You have an appointment</p>
+                                                <p *ngIf="!get_accp">Sorry, you have to wait for response</p>
+                                            </div>
+                                            
+                                        </div>
+                                        
+
+
+
+
+                        
+    
   

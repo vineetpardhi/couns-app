@@ -34,7 +34,6 @@ export class SignupComponent implements OnInit {
 
   onChange(mrchange:MatRadioChange)
     {
-      console.log(mrchange.value);
       this.stype=mrchange.value;
     }
 
